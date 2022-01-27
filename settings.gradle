@@ -1,0 +1,4 @@
+rootProject.name = 'my-application'
+
+include(':applications:app-product')
+include(':components:module-product')

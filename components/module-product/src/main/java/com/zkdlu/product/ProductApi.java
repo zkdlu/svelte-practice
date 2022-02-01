@@ -8,12 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/products")
-public class ProductApi {
-    private final ProductService productService;
-
-    public ProductApi(ProductService productService) {
-        this.productService = productService;
-    }
+public record ProductApi(ProductService productService) {
 
     @GetMapping
     public List<Product> getProducts() {

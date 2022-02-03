@@ -2,6 +2,9 @@
 import { each } from "svelte/internal";
 import { storeName } from './store'
 import Component from "./Component.svelte";
+import { lifecycle } from "./lifecycle";
+import { tick } from 'svelte'
+
 
 	export let name;
 	let text = '';
@@ -31,6 +34,13 @@ import Component from "./Component.svelte";
 	}
 
 	$storeName = 'test';
+
+	lifecycle();
+
+	async function handler() {
+		await tick()
+		console.log('oo');
+	}
 </script>
 
 <main>
@@ -41,7 +51,7 @@ import Component from "./Component.svelte";
 		{buttonName}
 	</button>
 	<div>
-		<input type="text" bind:value="{text}"/>
+		<input type="text" bind:value="{text}" on:input="{handler}"/>
 		=> {text}
 	</div>
 	<div style="display: {toggle ? 'none' : 'block'};">

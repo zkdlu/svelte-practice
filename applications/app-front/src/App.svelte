@@ -1,9 +1,10 @@
 <script>
 import { each } from "svelte/internal";
+import { storeName } from './store'
 import Component from "./Component.svelte";
 
-
 	export let name;
+	let text = '';
 	let buttonName = '잉'
 	let toggle = false;
 	let value = 0;
@@ -28,6 +29,8 @@ import Component from "./Component.svelte";
 	for (let i = 0; i < 10; i++) {
 		numbers.push(i);
 	}
+
+	$storeName = 'test';
 </script>
 
 <main>
@@ -37,6 +40,10 @@ import Component from "./Component.svelte";
 		on:mouseleave={leave}>
 		{buttonName}
 	</button>
+	<div>
+		<input type="text" bind:value="{text}"/>
+		=> {text}
+	</div>
 	<div style="display: {toggle ? 'none' : 'block'};">
 		<div>
 			<h2>조건문</h2>
@@ -58,6 +65,10 @@ import Component from "./Component.svelte";
 			<Component {numbers} reverse/>
 			<Component {numbers} slice='-2'/>
 			<Component {numbers} slice='0,4'/>
+		</div>
+		<div>
+			<h2>Store</h2>
+			{$storeName}
 		</div>
 	</div>
 </main>

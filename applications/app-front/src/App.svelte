@@ -1,7 +1,9 @@
 <script>
-import { each } from "svelte/internal";
+import Router from 'svelte-spa-router'
+import routes from './routes'
+import Header from './components/Header.svelte'
 import { storeName } from './store'
-import Component from "./Component.svelte";
+import Component from "./components/Component.svelte";
 import { lifecycle } from "./lifecycle";
 import { tick } from 'svelte'
 
@@ -43,7 +45,9 @@ import { tick } from 'svelte'
 	}
 </script>
 
-<main>
+<Header />
+<Router {routes} />
+<main>	
 	<h1>Hello {name}!</h1>
 	<button on:click={() => { toggle = !toggle;}}
 		on:mouseenter={enter}

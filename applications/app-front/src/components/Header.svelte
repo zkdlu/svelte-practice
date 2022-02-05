@@ -6,6 +6,7 @@
 <header>
     <a href="/" use:link use:active> Home </a>
     <a href="/about" use:link use:active> About </a>
+    <a href="/main" use:link use:active> Main </a>
 </header>
 
 <style>

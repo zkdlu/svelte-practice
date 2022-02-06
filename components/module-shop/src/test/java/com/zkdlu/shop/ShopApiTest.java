@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.List;
+
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -14,10 +16,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class ShopApiTest {
 
     private MockMvc mockMvc;
+    private SpyShopService spyShopService;
 
     @BeforeEach
     void setUp() {
-        ShopApi controller = new ShopApi();
+        spyShopService = new SpyShopService();
+        ShopApi controller = new ShopApi(spyShopService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
@@ -29,6 +33,8 @@ class ShopApiTest {
 
     @Test
     void getShops_returnsShops() throws Exception {
+        spyShopService.getShops_returnValue = List.of(getDefaultShop());
+
         mockMvc.perform(get("/shops"))
                 .andExpect(jsonPath("$").isArray())
                 .andExpect(jsonPath("$", hasSize(1)))
@@ -41,5 +47,16 @@ class ShopApiTest {
                 .andExpect(jsonPath("$[0].location.latitude", equalTo(100)))
                 .andExpect(jsonPath("$[0].open", equalTo(true)))
                 .andExpect(jsonPath("$[0].icon", equalTo("icon")));
+    }
+
+    private Shop getDefaultShop() {
+        return new Shop(1L,
+                "shop-1",
+                ShopCategory.CHICKEN,
+                10000,
+                1000,
+                new ShopLocation(100L, 100L),
+                true,
+                "icon");
     }
 }

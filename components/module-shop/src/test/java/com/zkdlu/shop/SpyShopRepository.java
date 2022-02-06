@@ -1,0 +1,12 @@
+package com.zkdlu.shop;
+
+import java.util.List;
+
+public class SpyShopRepository implements ShopRepository {
+    public List<Shop> findAll_returnValue;
+
+    @Override
+    public List<Shop> findAll() {
+        return findAll_returnValue;
+    }
+}

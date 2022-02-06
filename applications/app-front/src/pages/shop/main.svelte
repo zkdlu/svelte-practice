@@ -12,7 +12,7 @@
     for (let i = 1; i <= 7; i++) {
       fetchedShops.push({
         id: i,
-        name: 'shop-' + i,
+        name: "shop-" + i,
         icon: sectionIcons[i % sectionIcons.length],
       });
     }
@@ -20,24 +20,23 @@
     await tick();
 
     shops = [...fetchedShops];
-  };
+  }
 
   onMount(async () => {
     await fetchShopList();
-  })
-
+  });
 </script>
 
 <h1>{title}</h1>
 
 <ul>
-  <li>
-    <span>🌎</span> 전체
-  </li>
   {#each shops as shop (shop.id)}
     <li>
-      <span>{shop.icon}</span>
-      {shop.name}
+      <a href="#/shop/{shop.id}">
+        {shop.id}
+        <span>{shop.icon}</span>
+        {shop.name}
+      </a>
     </li>
   {/each}
 </ul>

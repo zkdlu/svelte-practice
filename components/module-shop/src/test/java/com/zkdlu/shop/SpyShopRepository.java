@@ -2,7 +2,7 @@ package com.zkdlu.shop;
 
 import java.util.List;
 
-public class SpyShopRepository implements ShopRepository {
+class SpyShopRepository implements ShopRepository {
     public List<Shop> findAll_returnValue;
 
     @Override

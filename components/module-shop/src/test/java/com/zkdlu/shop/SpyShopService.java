@@ -2,7 +2,7 @@ package com.zkdlu.shop;
 
 import java.util.List;
 
-public class SpyShopService implements ShopService {
+class SpyShopService implements ShopService {
     public List<Shop> getShops_returnValue;
 
     @Override

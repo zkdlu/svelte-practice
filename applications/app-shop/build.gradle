@@ -1,3 +1,6 @@
 dependencies {
-    apiElements(project(':components:module-shop'))
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation(project(':components:module-shop'))
 }

@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Getter
-public class ShopLocation {
+class ShopLocation {
     private long longitude;
     private long latitude;
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class ShopServiceImpl implements ShopService {
+class ShopServiceImpl implements ShopService {
     private final ShopRepository shopRepository;
 
     @Override

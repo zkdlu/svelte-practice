@@ -3,7 +3,7 @@ package com.zkdlu.shop;
 import lombok.Getter;
 
 @Getter
-public class Shop {
+class Shop {
     private long id;
     private String name;
     private ShopCategory category;

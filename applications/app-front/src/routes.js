@@ -9,6 +9,7 @@ const routes = {
   '/about': About,
   '/shop': Shop,
   '/shop/:id': ShopDetail,
+  '/test': Test,
 }
 
 export default routes

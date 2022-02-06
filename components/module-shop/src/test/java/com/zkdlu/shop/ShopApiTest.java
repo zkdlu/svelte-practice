@@ -32,6 +32,14 @@ class ShopApiTest {
         mockMvc.perform(get("/shops"))
                 .andExpect(jsonPath("$").isArray())
                 .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].id", equalTo(1)));
+                .andExpect(jsonPath("$[0].id", equalTo(1)))
+                .andExpect(jsonPath("$[0].name", equalTo("shop-1")))
+                .andExpect(jsonPath("$[0].category", equalTo("CHICKEN")))
+                .andExpect(jsonPath("$[0].minPrice", equalTo(10000)))
+                .andExpect(jsonPath("$[0].deliveryPrice", equalTo(1000)))
+                .andExpect(jsonPath("$[0].location.longitude", equalTo(100)))
+                .andExpect(jsonPath("$[0].location.latitude", equalTo(100)))
+                .andExpect(jsonPath("$[0].open", equalTo(true)))
+                .andExpect(jsonPath("$[0].icon", equalTo("icon")));
     }
 }

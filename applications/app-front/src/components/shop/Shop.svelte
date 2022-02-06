@@ -1,0 +1,46 @@
+<script>
+  import { onMount } from "svelte";
+  import { tick } from "svelte";
+
+  const title = "가게 목록";
+  const sectionIcons = ["🍚", "🍿", "🍜", "🍣", "🥩", "☕", "🍰"];
+
+  let shops = [];
+
+  async function fetchShopList() {
+    let fetchedShops = [];
+    for (let i = 1; i <= 7; i++) {
+      fetchedShops.push({
+        id: i,
+        name: 'shop-' + i,
+        icon: sectionIcons[i % sectionIcons.length],
+      });
+    }
+
+    await tick();
+
+    shops = [...fetchedShops];
+  };
+
+  onMount(async () => {
+    await fetchShopList();
+  })
+
+</script>
+
+<h1>{title}</h1>
+
+<ul>
+  <li>
+    <span>🌎</span> 전체
+  </li>
+  {#each shops as shop (shop.id)}
+    <li>
+      <span>{shop.icon}</span>
+      {shop.name}
+    </li>
+  {/each}
+</ul>
+
+<style>
+</style>

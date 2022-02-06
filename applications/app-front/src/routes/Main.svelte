@@ -1,10 +1,8 @@
 <script>
-    import Display from "../components/Display.svelte";
+    import Shop from "../components/shop/Shop.svelte";
 </script>
 
-<h1>Main</h1>
-<Display/>
-
+<Shop/>
 
 <style>
 

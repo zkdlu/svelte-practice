@@ -10,22 +10,16 @@
   };
 
   let shops = [];
+
   async function fetchShopList() {
     let fetchedShops = [];
-    for (let i = 1; i <= 7; i++) {
-      fetchedShops.push({
-        id: i,
-        name: "shop-" + i,
-        category: 'chicken',
-        minPrice: 10000,
-        deliveryPrice: 3000,
-        location: {longitude: 10 * i, latitude: 20 * i},
-        open: i % 3 !== 0 ? true : false,
-        icon: sectionIcons[i % sectionIcons.length],
-      });
-    }
 
-    await tick();
+    const result = await fetch('http://localhost:8080/shops');
+    const json = await result.json();
+
+    console.log(json);
+
+    fetchedShops.push(...json);
 
     shops = [...fetchedShops];
   }

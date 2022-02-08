@@ -1,4 +1,4 @@
-package com.zkdlu.shop;
+package com.zkdlu;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

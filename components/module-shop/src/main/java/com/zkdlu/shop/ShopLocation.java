@@ -3,6 +3,9 @@ package com.zkdlu.shop;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 @NoArgsConstructor
 @Getter
 class ShopLocation {

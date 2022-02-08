@@ -29,10 +29,10 @@
   });
 
   function getDistance(location) {
-    return Math.abs(
-      Math.pow(position.latitude - location.latitude, 2) 
-      - Math.pow(position.longitude - location.longitude, 2)
-    );
+    return Math.sqrt(
+      Math.pow(Math.abs(position.latitude - location.latitude), 2) 
+      + Math.pow(Math.abs(position.longitude - location.longitude), 2)
+    ).toFixed(2);
   }
 </script>
 

@@ -1,7 +1,6 @@
 package com.zkdlu.shop;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-interface ShopRepository {
-    List<Shop> findAll();
+public interface ShopRepository extends JpaRepository<Shop, Long> {
 }

@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { isEmpty } from '../../utils/arrayUtils'
+  import { isEmpty } from "../../utils/arrayUtils";
   export let params = {};
 
   const title = "가게";

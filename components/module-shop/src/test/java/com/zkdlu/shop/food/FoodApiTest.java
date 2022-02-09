@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -14,10 +15,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class FoodApiTest {
 
     private MockMvc mockMvc;
+    private SpyFoodService spyFoodService;
 
     @BeforeEach
     void setUp() {
-        FoodApi controller = new FoodApi();
+        spyFoodService = new SpyFoodService();
+        FoodApi controller = new FoodApi(spyFoodService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
@@ -38,5 +41,12 @@ class FoodApiTest {
                 .andExpect(jsonPath("$[0].category", equalTo("식사류")))
                 .andExpect(jsonPath("$[0].icon", equalTo("\uD83C\uDF63")))
                 .andExpect(jsonPath("$[0].saled", equalTo(true)));
+    }
+
+    @Test
+    void getFoods_passesShopIdToService() throws Exception {
+        mockMvc.perform(get("/shops/1/foods"));
+
+        assertThat(spyFoodService.getFoodsFromShop_argumentsShopId).isEqualTo(1L);
     }
 }

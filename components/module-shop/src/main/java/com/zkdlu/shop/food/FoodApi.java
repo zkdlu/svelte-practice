@@ -12,8 +12,11 @@ import java.util.List;
 @RequestMapping("/shops/*")
 @RestController
 public class FoodApi {
+    private final FoodService foodService;
+
     @GetMapping("/{id}/foods")
     public List<Food> getFoods(@PathVariable("id") long shopId) {
+        foodService.getFoodsFromShop(shopId);
         return List.of(
                 new Food(
                         1L,

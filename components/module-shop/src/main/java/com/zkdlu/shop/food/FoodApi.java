@@ -16,16 +16,6 @@ public class FoodApi {
 
     @GetMapping("/{id}/foods")
     public List<Food> getFoods(@PathVariable("id") long shopId) {
-        foodService.getFoodsFromShop(shopId);
-        return List.of(
-                new Food(
-                        1L,
-                        "음식",
-                        1000,
-                        "식사류",
-                        "\uD83C\uDF63",
-                        true
-                )
-        );
+        return foodService.getFoodsFromShop(shopId);
     }
 }

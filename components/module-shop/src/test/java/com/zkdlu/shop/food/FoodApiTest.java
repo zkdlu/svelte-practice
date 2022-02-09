@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
@@ -32,6 +34,17 @@ class FoodApiTest {
 
     @Test
     void getFoods_returnsFoods() throws Exception {
+        spyFoodService.getFoodsFromShop_returnValue = List.of(
+                new Food(
+                        1L,
+                        "음식",
+                        1000,
+                        "식사류",
+                        "\uD83C\uDF63",
+                        true
+                )
+        );
+
         mockMvc.perform(get("/shops/1/foods"))
                 .andExpect(jsonPath("$").isArray())
                 .andExpect(jsonPath("$", hasSize(1)))

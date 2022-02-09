@@ -44,8 +44,8 @@
 <br /><br />
 
 {#if !isEmpty(foods)}
-  <table>
-    {#each Object.entries(categorizing(foods)) as [category, foods]}
+  {#each Object.entries(categorizing(foods)) as [category, foods]}
+    <table>
       {category}
       <thead>
         <tr>
@@ -56,8 +56,8 @@
           <th />
         </tr>
       </thead>
-      {#each foods as food (food.id)}
-        <tbody>
+      <tbody>
+        {#each foods as food (food.id)}
           <tr>
             <td>{food.icon}</td>
             <td>{food.name}</td>
@@ -71,10 +71,10 @@
               {/if}
             </td>
           </tr>
-        </tbody>
-      {/each}
-    {/each}
-  </table>
+        {/each}
+      </tbody>
+    </table>
+  {/each}
 {:else}
   <h1>텅</h1>
 {/if}

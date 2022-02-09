@@ -1,9 +1,7 @@
 <script>
   import { onMount } from "svelte";
-  import { tick } from "svelte";
 
   const title = "가게 목록";
-  const sectionIcons = ["🍚", "🍿", "🍜", "🍣", "🥩", "☕", "🍰"];
 
   let position = {
     longitude: 0, latitude: 0
@@ -70,7 +68,11 @@
           {/if}
         </td>
         <td>
+          {#if shop.open}
           <a href="#/shop/{shop.id}"> 자세히 </a>
+          {:else}
+          <span>다음에..</span>
+          {/if}
         </td>
       </tr>
     {/each}

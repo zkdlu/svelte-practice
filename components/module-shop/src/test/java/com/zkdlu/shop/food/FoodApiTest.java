@@ -42,7 +42,7 @@ class FoodApiTest {
                         "식사류",
                         "\uD83C\uDF63",
                         true,
-                        1L
+                        null
                 )
         );
 
@@ -54,8 +54,7 @@ class FoodApiTest {
                 .andExpect(jsonPath("$[0].price", equalTo(1000)))
                 .andExpect(jsonPath("$[0].category", equalTo("식사류")))
                 .andExpect(jsonPath("$[0].icon", equalTo("\uD83C\uDF63")))
-                .andExpect(jsonPath("$[0].saled", equalTo(true)))
-                .andExpect(jsonPath("$[0].shopId", equalTo(1)));
+                .andExpect(jsonPath("$[0].saled", equalTo(true)));
     }
 
     @Test

@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 @Getter
-class Shop {
+public class Shop {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

@@ -34,7 +34,7 @@ class FoodServiceImplTest {
                         "식사류",
                         "icon",
                         true,
-                        2L));
+                        null));
 
         var actual = foodService.getFoodsFromShop(1L);
 
@@ -45,6 +45,5 @@ class FoodServiceImplTest {
         assertThat(actual.get(0).getCategory()).isEqualTo("식사류");
         assertThat(actual.get(0).getIcon()).isEqualTo("icon");
         assertThat(actual.get(0).isSaled()).isEqualTo(true);
-        assertThat(actual.get(0).getShopId()).isEqualTo(2L);
     }
 }

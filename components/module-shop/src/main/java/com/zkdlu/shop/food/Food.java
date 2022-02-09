@@ -1,5 +1,6 @@
 package com.zkdlu.shop.food;
 
+import com.zkdlu.shop.Shop;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
@@ -21,15 +24,17 @@ public class Food {
     private String category;
     private String icon;
     private boolean saled;
-    private long shopId;
+    @ManyToOne
+    @JoinColumn(name = "SHOP_ID")
+    private Shop shop;
 
-    public Food(long id, String name, int price, String category, String icon, boolean saled, long shopId) {
+    public Food(long id, String name, int price, String category, String icon, boolean saled, Shop shop) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;
         this.icon = icon;
         this.saled = saled;
-        this.shopId = shopId;
+        this.shop = shop;
     }
 }

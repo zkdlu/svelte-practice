@@ -13,20 +13,15 @@ public class Food {
     private String category;
     private String icon;
     private boolean saled;
+    private long shopId;
 
-    public Food(long id, String name, int price, String category, String icon, boolean saled) {
+    public Food(long id, String name, int price, String category, String icon, boolean saled, long shopId) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;
         this.icon = icon;
         this.saled = saled;
+        this.shopId = shopId;
     }
-
-    //    id: i,
-//    name: '음식-' + i,
-//    price: 10000 + 1000 * i,
-//    category: '식사류',
-//    icon: '🍣',
-//    saled: true,
 }

@@ -1,3 +1,3 @@
 dependencies {
-    api project(':components:module-shop')
+    implementation project(':components:module-shop')
 }

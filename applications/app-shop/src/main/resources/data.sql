@@ -18,3 +18,16 @@ insert into shop (id, category, delivery_price, icon, latitude, longitude, min_p
 
 insert into shop (id, category, delivery_price, icon, latitude, longitude, min_price, name, open) values
 (7, 'CHICKEN', 10000, '🍰', 100, -100, 1000, 'shop-7', TRUE);
+
+
+insert into food (id, category, icon, name, price, saled, shop_id) values
+(1, '식사류',  '🍚', '찜닭', 10000, TRUE, 1);
+
+insert into food (id, category, icon, name, price, saled, shop_id) values
+(2, '식사류',  '🍚', '로제찜닭', 11000, TRUE, 1);
+
+insert into food (id, category, icon, name, price, saled, shop_id) values
+(3, '식사류',  '🍚', '닭도리탕', 10000, TRUE, 1);
+
+insert into food (id, category, icon, name, price, saled, shop_id) values
+(4, '식사류',  '🍚', '치킨', 10000, TRUE, 1);

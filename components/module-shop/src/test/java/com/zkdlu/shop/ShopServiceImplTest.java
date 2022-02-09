@@ -27,6 +27,7 @@ class ShopServiceImplTest {
         assertThat(shops).hasSize(1);
         assertThat(shops.get(0).getId()).isEqualTo(1L);
         assertThat(shops.get(0).getName()).isEqualTo("shop-1");
+        assertThat(shops.get(0).getCategory()).isEqualTo(ShopCategory.CHICKEN);
         assertThat(shops.get(0).getMinPrice()).isEqualTo(10000);
         assertThat(shops.get(0).getDeliveryPrice()).isEqualTo(1000);
         assertThat(shops.get(0).getLocation().getLongitude()).isEqualTo(100L);

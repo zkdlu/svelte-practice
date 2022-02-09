@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
-
+  import { isEmpty } from '../../utils/arrayUtils'
+  
   const title = "가게 목록";
 
   let position = {
@@ -38,6 +39,7 @@
 
 <br /><br />
 
+{#if !isEmpty(shops)}
 <table>
   <thead>
     <tr>
@@ -78,6 +80,9 @@
     {/each}
   </tbody>
 </table>
+{:else}
+<h1>주변에 가게가 없어요</h1>
+{/if}
 
 <br /><br />
 

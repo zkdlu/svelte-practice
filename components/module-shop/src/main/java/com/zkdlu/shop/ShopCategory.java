@@ -4,5 +4,5 @@ import lombok.Getter;
 
 @Getter
 enum ShopCategory {
-    CHICKEN
+    KOREAN, CHINESE, JAPANESE, BURGER, CHICKEN, SNACK, DESSERT
 }

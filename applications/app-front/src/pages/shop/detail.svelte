@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  import { isEmpty } from '../../utils/arrayUtils'
   export let params = {};
 
   const title = "가게";
@@ -31,10 +32,6 @@
     });
 
     return { ...categorizingFoods };
-  }
-
-  function isEmpty(arr) {
-    return Array.isArray(arr) && arr.length === 0;
   }
 
   onMount(async () => {

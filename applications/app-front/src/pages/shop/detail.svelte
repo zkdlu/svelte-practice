@@ -16,8 +16,6 @@
     const result = await fetch(`http://localhost:8080/shops/${shopId}/foods`);
     const json = await result.json();
 
-    console.log(json);
-
     fetchedFoods.push(...json);
 
     foods = [...fetchedFoods];

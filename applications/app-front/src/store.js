@@ -6,4 +6,4 @@ export let myLocation = writable({
     latitude: 0
 });
 
-export let bucket = writable([]);
+export let cart = writable([]);

@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { isEmpty } from "../../utils/arrayUtils";
-  import { bucket } from "../../store";
+  import { cart } from "../../store";
   export let params = {};
 
   const title = "가게";
@@ -36,14 +36,12 @@
   }
 
   function putInBucket(food) {
-    const bucketItem = {
+    const cartItem = {
       shopId: params.id,
       food,
     }
     
-    bucket.update(contents => [...contents, bucketItem]);
-    
-    console.log($bucket);
+    cart.update(contents => [...contents, cartItem]);
   }
 
   onMount(async () => {

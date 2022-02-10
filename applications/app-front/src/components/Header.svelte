@@ -2,6 +2,7 @@
     import { link } from "svelte-spa-router";
     import active from "svelte-spa-router/active";
     import {myLocation} from '../store'
+    import Bucket from './Bucket.svelte'
 
     $myLocation = {
         latitude: 100,
@@ -18,6 +19,8 @@
 <div>
     내 위치 [{$myLocation.latitude}, {$myLocation.longitude}]
 </div>
+
+<Bucket/>
 
 <style>
     :global(header a.active) {

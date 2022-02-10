@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { isEmpty } from "../../utils/arrayUtils";
+  import { bucket } from "../../store";
   export let params = {};
 
   const title = "가게";
@@ -34,6 +35,17 @@
     return { ...categorizingFoods };
   }
 
+  function putInBucket(food) {
+    const bucketItem = {
+      shopId: params.id,
+      food,
+    }
+    
+    bucket.update(contents => [...contents, bucketItem]);
+    
+    console.log($bucket);
+  }
+
   onMount(async () => {
     await fetchFoods(params.id);
   });
@@ -65,7 +77,7 @@
             <td>{food.price}원</td>
             <td>
               {#if food.saled}
-                <button>담기</button>
+                <button on:click="{putInBucket(food)}">담기</button>
               {:else}
                 ❌
               {/if}

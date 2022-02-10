@@ -93,7 +93,7 @@
 
 <br /><br />
 
-<a href="#/shop"> 목록으로 ▶️ </a>
+<a href="#/shop"> ◀️ 목록으로 </a>
 <Cart/>
 
 <style>

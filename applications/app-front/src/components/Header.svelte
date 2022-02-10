@@ -23,6 +23,10 @@
 <Cart/>
 
 <style>
+    :global(header) {
+        background-color:burlywood;
+    }
+
     :global(header a.active) {
         font-weight: bold;
         text-decoration: underline;

@@ -2,7 +2,7 @@
     import { link } from "svelte-spa-router";
     import active from "svelte-spa-router/active";
     import {myLocation} from '../store'
-    import Cart from './Cart.svelte'
+    
 
     $myLocation = {
         latitude: 100,
@@ -19,8 +19,6 @@
 <div>
     내 위치 [{$myLocation.latitude}, {$myLocation.longitude}]
 </div>
-
-<Cart/>
 
 <style>
     :global(header) {

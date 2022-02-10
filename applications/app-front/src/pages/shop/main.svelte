@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { myLocation } from "../../store";
   import { isEmpty } from "../../utils/arrayUtils";
+  import Cart from '../../components/Cart.svelte'
 
   const title = "가게 목록";
 
@@ -86,6 +87,8 @@
 <br /><br />
 
 <a href="/"> ◀️ 메인으로 </a>
+
+<Cart/>
 
 <style>
 </style>

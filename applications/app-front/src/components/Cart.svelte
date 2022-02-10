@@ -10,9 +10,12 @@
 <div>
     {#if totalPrice > 0}
         결제 예정 금액: {totalPrice} 원
-        <a href='/#/cart'>카트보기</a>
+        <a href='#/cart'>카트보기</a>
     {/if}
 </div>
 
-<style>
+<style scoped>
+    div {
+        margin-top: auto;
+    }
 </style>

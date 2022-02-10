@@ -2,6 +2,8 @@
   import { onMount } from "svelte";
   import { isEmpty } from "../../utils/arrayUtils";
   import { cart } from "../../store";
+  import Cart from '../../components/Cart.svelte'
+
   export let params = {};
 
   const title = "가게";
@@ -92,6 +94,7 @@
 <br /><br />
 
 <a href="#/shop"> 목록으로 ▶️ </a>
+<Cart/>
 
 <style>
 </style>

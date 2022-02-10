@@ -1,9 +1,13 @@
 <script>
-    
+    import { cart } from "../store";
+
+    function goToOrderPage() {
+        window.location.href = '#/order'
+    }
 </script>
 
 <div>
-    <button>주문하기</button>
+    <button on:click="{goToOrderPage}">주문하기</button>
 </div>
 
 <style>

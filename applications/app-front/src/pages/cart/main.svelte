@@ -1,4 +1,5 @@
 <script>
+  import OrderButton from "../../components/OrderButton.svelte";
   import { cart } from "../../store";
   const title = "장바구니";
 
@@ -16,8 +17,7 @@
     {/each}
   </ul>
 </div>
-
-<a href="/"> ◀️ 메인으로 </a>
+<OrderButton/>
 
 <style>
   .cart {

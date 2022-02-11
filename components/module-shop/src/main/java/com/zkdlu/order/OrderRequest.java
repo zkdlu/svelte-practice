@@ -10,4 +10,9 @@ import java.util.List;
 public class OrderRequest {
     private int totalPrice;
     private List<OrderRequestItem> orderItems;
+
+    public OrderRequest(int totalPrice, List<OrderRequestItem> orderItems) {
+        this.totalPrice = totalPrice;
+        this.orderItems = orderItems;
+    }
 }

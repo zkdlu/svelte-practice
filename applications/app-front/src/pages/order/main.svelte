@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { cart } from "../../store";
   import { isEmpty } from "../../utils/arrayUtils";
+  import api from "../../utils/api"
   import OrderButton from "../../components/OrderButton.svelte";
 
   const title = "주문 페이지";
@@ -19,6 +20,20 @@
       console.log(cartItem);
     }
   });
+
+  async function placeOrder() {
+    const cartItems = [...$cart];
+
+    try {
+      const json = await api.post("orders", {
+      orderItems: cartItems,
+      totalPrice,
+    });
+      console.log(json);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 </script>
 
 <h1>{title}</h1>
@@ -47,7 +62,7 @@
   </div>
   <h2>결제 금액: {totalPrice}</h2>
 </div>
-<OrderButton buttonName="결제하기" />
+<OrderButton buttonName="결제하기" onClickCallback={placeOrder} />
 
 <style scoped>
   h2 {

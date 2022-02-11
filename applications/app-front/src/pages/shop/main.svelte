@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { myLocation } from "../../store";
   import { isEmpty } from "../../utils/arrayUtils";
+  import api from "../../utils/api"
   import Cart from '../../components/Cart.svelte'
 
   const title = "가게 목록";
@@ -13,11 +14,7 @@
   async function fetchShopList() {
     let fetchedShops = [];
 
-    const result = await fetch("http://localhost:8080/shops");
-    const json = await result.json();
-
-    console.log(json);
-
+    const json = await api.get("shops");
     fetchedShops.push(...json);
 
     shops = [...fetchedShops];

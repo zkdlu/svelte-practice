@@ -1,9 +1,13 @@
 package com.zkdlu.shop;
 
+import com.zkdlu.shop.food.Food;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -36,6 +40,46 @@ class ShopServiceImplTest {
         assertThat(shops.get(0).getIcon()).isEqualTo("icon");
     }
 
+    @Test
+    void getFoods_passesShopIdToRepository() {
+        spyShopRepository.findById_returnValue = Optional.of(getDefaultShop());
+
+        shopService.getFoods(1L);
+
+        assertThat(spyShopRepository.findById_argumentShopId).isEqualTo(1L);
+    }
+
+    @Test
+    void getFoods_returnsShop() {
+        List<Food> givenFoods = List.of(new Food(1L,
+                "찜닭",
+                10000,
+                "식사류",
+                "icon",
+                true));
+        spyShopRepository.findById_returnValue = Optional.of(new Shop(0L, null,
+                null, 0, 0, null, false, null, givenFoods));
+
+        var actual = shopService.getFoods(1L);
+
+        assertThat(actual).hasSize(1);
+        assertThat(actual.get(0).getId()).isEqualTo(1L);
+        assertThat(actual.get(0).getName()).isEqualTo("찜닭");
+        assertThat(actual.get(0).getPrice()).isEqualTo(10000);
+        assertThat(actual.get(0).getCategory()).isEqualTo("식사류");
+        assertThat(actual.get(0).getIcon()).isEqualTo("icon");
+        assertThat(actual.get(0).isSaled()).isEqualTo(true);
+    }
+
+    @Test
+    void getFoods_throwsNotExistShopException_whenNotExistsShopId() {
+        spyShopRepository.findById_returnValue = Optional.empty();
+
+        Assertions.assertThrows(NotExistShopException.class, () -> {
+            shopService.getFoods(0L);
+        });
+    }
+
     private Shop getDefaultShop() {
         return new Shop(1L,
                 "shop-1",
@@ -44,6 +88,6 @@ class ShopServiceImplTest {
                 1000,
                 new ShopLocation(100L, 100L),
                 true,
-                "icon");
+                "icon", Collections.emptyList());
     }
 }

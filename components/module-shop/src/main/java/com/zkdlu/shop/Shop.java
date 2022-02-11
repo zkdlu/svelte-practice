@@ -1,5 +1,6 @@
 package com.zkdlu.shop;
 
+import com.zkdlu.shop.food.Food;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,9 +9,13 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
@@ -29,7 +34,11 @@ public class Shop {
     private boolean open;
     private String icon;
 
-    public Shop(long id, String name, ShopCategory category, int minPrice, int deliveryPrice, ShopLocation location, boolean open, String icon) {
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SHOP_ID")
+    private List<Food> foods;
+
+    public Shop(long id, String name, ShopCategory category, int minPrice, int deliveryPrice, ShopLocation location, boolean open, String icon, List<Food> foods) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -38,5 +47,6 @@ public class Shop {
         this.location = location;
         this.open = open;
         this.icon = icon;
+        this.foods = foods;
     }
 }

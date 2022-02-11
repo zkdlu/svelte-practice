@@ -10,6 +10,8 @@ import java.util.Optional;
 
 class SpyShopRepository implements ShopRepository {
     public List<Shop> findAll_returnValue;
+    public long findById_argumentShopId;
+    public Optional<Shop> findById_returnValue = Optional.empty();
 
     @Override
     public List<Shop> findAll() {
@@ -73,7 +75,8 @@ class SpyShopRepository implements ShopRepository {
 
     @Override
     public Optional<Shop> findById(Long aLong) {
-        return Optional.empty();
+        findById_argumentShopId = aLong;
+        return findById_returnValue;
     }
 
     @Override

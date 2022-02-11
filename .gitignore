@@ -128,3 +128,6 @@ Temporary Items
 /.idea/
 /applications/app-product/build/
 /components/module-product/build/
+
+**/build
+**/build/**

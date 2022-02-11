@@ -1,5 +1,6 @@
 <script>
     import { cart } from "../store";
+    export let buttonName = '주문하기';
 
     function goToOrderPage() {
         window.location.href = '#/order'
@@ -7,7 +8,7 @@
 </script>
 
 <div>
-    <button on:click="{goToOrderPage}">주문하기</button>
+    <button on:click="{goToOrderPage}">{buttonName}</button>
 </div>
 
 <style>

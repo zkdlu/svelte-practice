@@ -13,7 +13,7 @@
 <div class="cart">
   <ul>
     {#each $cart as cartItem}
-        <li>{cartItem.food.name}<button on:click="{deleteCartItem(cartItem)}">삭제</button></li>
+        <li>{cartItem.foodName}<button on:click="{deleteCartItem(cartItem)}">삭제</button></li>
     {/each}
   </ul>
 </div>

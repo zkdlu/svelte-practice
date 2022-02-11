@@ -2,7 +2,7 @@
     import { cart } from "../store";
 
     $: totalPrice = $cart.reduce((sum, item) => {
-        return sum + item.food.price;
+        return sum + item.foodPrice;
     }, 0);
     
 </script>

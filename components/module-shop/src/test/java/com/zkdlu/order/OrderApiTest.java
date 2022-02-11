@@ -1,7 +1,6 @@
 package com.zkdlu.order;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zkdlu.common.StubUuidProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
@@ -21,7 +20,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class OrderApiTest {
 
     private ObjectMapper objectMapper;
-    private StubUuidProvider stubUuidProvider;
     private SpyOrderService spyOrderService;
     private MockMvc mockMvc;
 
@@ -29,9 +27,8 @@ class OrderApiTest {
     void setUp() {
         objectMapper = new ObjectMapper();
 
-        stubUuidProvider = new StubUuidProvider();
         spyOrderService = new SpyOrderService();
-        OrderApi orderApi = new OrderApi(spyOrderService, stubUuidProvider);
+        OrderApi orderApi = new OrderApi(spyOrderService);
 
         mockMvc = MockMvcBuilders.standaloneSetup(orderApi).build();
     }
@@ -47,7 +44,6 @@ class OrderApiTest {
     @Test
     void placeOrder_returnsOrder() throws Exception {
         UUID givenUuid = UUID.randomUUID();
-        stubUuidProvider.randomUUID_returnValue = givenUuid;
 
         spyOrderService.placeOrder_returnValue = new Order(
                 givenUuid,

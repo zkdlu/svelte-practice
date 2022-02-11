@@ -2,7 +2,7 @@ package com.zkdlu.common;
 
 import java.util.UUID;
 
-public class StubUuidProvider implements UuidProvider {
+public class StubUuidProvider extends UuidProvider {
     public UUID randomUUID_returnValue;
 
     @Override

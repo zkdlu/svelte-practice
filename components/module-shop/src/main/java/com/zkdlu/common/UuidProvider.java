@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
-public interface UuidProvider {
-    default UUID randomUUID() {
+public class UuidProvider {
+    public UUID randomUUID() {
         return UUID.randomUUID();
     }
 }

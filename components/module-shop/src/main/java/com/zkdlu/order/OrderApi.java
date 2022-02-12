@@ -15,8 +15,8 @@ public class OrderApi {
     private final OrderService orderService;
 
     @PostMapping
-    public ResponseEntity placeOrder(@RequestBody OrderRequest orderRequest) {
-        var order = orderService.placeOrder(orderRequest);
+    public ResponseEntity placeOrder(@RequestBody Cart cart) {
+        var order = orderService.placeOrder(cart);
         return new ResponseEntity(order, HttpStatus.CREATED);
     }
 }

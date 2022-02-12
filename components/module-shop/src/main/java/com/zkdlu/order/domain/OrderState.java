@@ -1,4 +1,4 @@
-package com.zkdlu.order;
+package com.zkdlu.order.domain;
 
 public enum OrderState {
     NONE, ORDERED

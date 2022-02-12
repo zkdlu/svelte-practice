@@ -1,8 +1,9 @@
-package com.zkdlu.order;
+package com.zkdlu.order.service;
 
 import com.zkdlu.common.LocalDateTimeProvider;
 import com.zkdlu.common.StubLocalDateTimeProvider;
 import com.zkdlu.common.StubUuidProvider;
+import com.zkdlu.order.domain.Order;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

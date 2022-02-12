@@ -1,4 +1,4 @@
-package com.zkdlu.order;
+package com.zkdlu.order.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AccessLevel;

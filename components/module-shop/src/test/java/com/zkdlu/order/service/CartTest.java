@@ -1,4 +1,4 @@
-package com.zkdlu.order;
+package com.zkdlu.order.service;
 
 import org.junit.jupiter.api.Test;
 

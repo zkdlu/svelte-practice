@@ -1,4 +1,4 @@
-package com.zkdlu.order;
+package com.zkdlu.order.domain;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;

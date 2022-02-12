@@ -1,4 +1,4 @@
-package com.zkdlu.order;
+package com.zkdlu.order.service;
 
 import lombok.AccessLevel;
 import lombok.Getter;

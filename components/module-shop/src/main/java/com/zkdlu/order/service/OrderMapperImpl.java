@@ -1,7 +1,8 @@
-package com.zkdlu.order;
+package com.zkdlu.order.service;
 
 import com.zkdlu.common.LocalDateTimeProvider;
 import com.zkdlu.common.UuidProvider;
+import com.zkdlu.order.domain.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

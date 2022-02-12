@@ -40,3 +40,12 @@ insert into food (id, category, icon, name, price, saled, shop_id) values
 
 insert into food (id, category, icon, name, price, saled, shop_id) values
 (7, '음료',  '☕', '커피', 1000, TRUE, 1);
+
+insert into food (id, category, icon, name, price, saled, shop_id) values
+(8, '식사류',  '🍚', '백반', 5000, TRUE, 2);
+
+insert into food (id, category, icon, name, price, saled, shop_id) values
+(9, '식사류',  '🍣', '초밥', 12000, TRUE, 2);
+
+insert into food (id, category, icon, name, price, saled, shop_id) values
+(10, '식사류',  '🥩', '스테이크', 18000, TRUE, 2);

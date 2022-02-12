@@ -1,6 +1,5 @@
 package com.zkdlu.shop;
 
-import com.zkdlu.shop.food.Food;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -36,7 +36,7 @@ public class Shop {
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "SHOP_ID")
-    private List<Food> foods;
+    private List<Food> foods = new ArrayList<>();
 
     public Shop(long id, String name, ShopCategory category, int minPrice, int deliveryPrice, ShopLocation location, boolean open, String icon, List<Food> foods) {
         this.id = id;

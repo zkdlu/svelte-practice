@@ -1,6 +1,5 @@
 package com.zkdlu.shop;
 
-import com.zkdlu.shop.food.Food;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

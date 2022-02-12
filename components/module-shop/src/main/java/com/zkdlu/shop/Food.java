@@ -1,4 +1,4 @@
-package com.zkdlu.shop.food;
+package com.zkdlu.shop;
 
 import lombok.AccessLevel;
 import lombok.Getter;

@@ -28,7 +28,9 @@
       const json = await api.post("orders", {
       orderItems: cartItems,
     });
-      console.log(json);
+
+      cart.update(() => []);
+      window.location.href = `#/order/${json.orderId}`;
     } catch (err) {
       console.log(err);
     }
@@ -59,7 +61,7 @@
       </tbody>
     </table>
   </div>
-  <h2>결제 금액: {totalPrice}</h2>
+  <h2>결제 금액: {totalPrice} 원</h2>
 </div>
 <OrderButton buttonName="결제하기" onClickCallback={placeOrder} />
 

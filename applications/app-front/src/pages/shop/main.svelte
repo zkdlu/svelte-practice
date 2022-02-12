@@ -4,12 +4,11 @@
   import { isEmpty } from "../../utils/arrayUtils";
   import api from "../../utils/api"
   import Cart from '../../components/Cart.svelte'
+  import { shops } from "../../store";
 
   const title = "가게 목록";
 
   let position = $myLocation;
-
-  let shops = [];
 
   async function fetchShopList() {
     let fetchedShops = [];
@@ -17,7 +16,7 @@
     const json = await api.get("shops");
     fetchedShops.push(...json);
 
-    shops = [...fetchedShops];
+    $shops = [...fetchedShops];
   }
 
   onMount(async () => {
@@ -36,7 +35,7 @@
 
 <br /><br />
 
-{#if !isEmpty(shops)}
+{#if !isEmpty($shops)}
   <table>
     <thead>
       <tr>
@@ -51,7 +50,7 @@
       </tr>
     </thead>
     <tbody>
-      {#each shops as shop (shop.id)}
+      {#each $shops as shop (shop.id)}
         <tr>
           <td>{shop.icon}</td>
           <td>{shop.name}</td>

@@ -3,6 +3,7 @@ import Shop from './pages/shop/main.svelte'
 import ShopDetail from './pages/shop/detail.svelte'
 import Cart from './pages/cart/main.svelte'
 import Order from './pages/order/main.svelte'
+import OrderPayment from './pages/order/payment.svelte'
 
 const routes = {
   '/': Home,
@@ -10,6 +11,7 @@ const routes = {
   '/shop/:id': ShopDetail,
   '/cart': Cart,
   '/order': Order,
+  '/order/:id': OrderPayment,
 }
 
 export default routes

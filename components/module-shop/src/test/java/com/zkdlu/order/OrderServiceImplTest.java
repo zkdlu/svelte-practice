@@ -25,7 +25,7 @@ class OrderServiceImplTest {
     @Test
     void placeOrder_createNewOrderUsingCart() {
         CartItem givenCartItem = new CartItem(1L, 2L, "치킨이 두마리!", 10000);
-        Cart givenCart = new Cart(0, null, List.of(givenCartItem));
+        Cart givenCart = new Cart(10000, List.of(givenCartItem));
 
         orderService.placeOrder(givenCart);
 

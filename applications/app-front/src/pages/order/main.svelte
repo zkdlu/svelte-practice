@@ -27,7 +27,6 @@
     try {
       const json = await api.post("orders", {
       orderItems: cartItems,
-      totalPrice,
     });
       console.log(json);
     } catch (err) {

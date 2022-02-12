@@ -16,10 +16,7 @@ public class OrderMapperImpl implements OrderMapper{
     public Order mapFrom(Cart cart) {
         return new Order(
                 uuidProvider.randomUUID().toString(),
-                cart.getTitle(),
-                localDateTimeProvider.now(),
-                cart.getTotalPrice(),
-                cart.getTotalPrice()
+                localDateTimeProvider.now()
         );
     }
 }

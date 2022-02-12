@@ -21,20 +21,14 @@ import java.time.LocalDateTime;
 public class Order {
     @Id
     private String orderId;
-    private String orderTitle;
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime orderDate;
-    private int orderAmount;
-    private int paymentAmount;
     @Enumerated(EnumType.STRING)
     private OrderState orderState;
 
-    public Order(String orderId, String orderTitle, LocalDateTime orderDate, int orderAmount, int paymentAmount) {
+    public Order(String orderId, LocalDateTime orderDate) {
         this.orderId = orderId;
-        this.orderTitle = orderTitle;
         this.orderDate = orderDate;
-        this.orderAmount = orderAmount;
-        this.paymentAmount = paymentAmount;
         this.orderState = OrderState.NONE;
     }
 

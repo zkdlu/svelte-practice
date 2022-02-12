@@ -28,7 +28,7 @@ class OrderServiceImplTest {
     @Test
     void placeOrder_createNewOrderUsingCart() {
         CartItem givenCartItem = new CartItem(1L, 2L, "치킨이 두마리!", 10000);
-        Cart givenCart = new Cart(10000, List.of(givenCartItem));
+        Cart givenCart = new Cart(List.of(givenCartItem));
 
         orderService.placeOrder(givenCart);
 
@@ -58,9 +58,6 @@ class OrderServiceImplTest {
     private Order getDefaultOrder(UUID orderId) {
         return new Order(
                 orderId.toString(),
-                "치킨이 두마리",
-                LocalDateTime.of(2022, 2, 12, 12, 30, 40),
-                10000,
-                10000);
+                LocalDateTime.of(2022, 2, 12, 12, 30, 40));
     }
 }

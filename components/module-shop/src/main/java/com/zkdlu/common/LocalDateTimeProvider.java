@@ -6,9 +6,7 @@ import java.time.LocalDateTime;
 
 @Component
 public class LocalDateTimeProvider {
-    public LocalDateTime now_returnValue;
-
     public LocalDateTime now() {
-        return now_returnValue;
+        return LocalDateTime.now();
     }
 }

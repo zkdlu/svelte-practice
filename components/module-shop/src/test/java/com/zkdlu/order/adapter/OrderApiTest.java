@@ -51,31 +51,24 @@ class OrderApiTest {
 
         spyOrderService.placeOrder_returnValue = new Order(
                 givenUuid.toString(),
-                "치킨이 두마리",
-                LocalDateTime.of(2022, 2, 12, 12, 30, 40),
-                10000,
-                10000);
+                LocalDateTime.of(2022, 2, 12, 12, 30, 40));
 
         mockMvc.perform(post("/orders")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsBytes(new Cart())))
                 .andExpect(jsonPath("$.orderId", equalTo(givenUuid.toString())))
-                .andExpect(jsonPath("$.orderTitle", equalTo("치킨이 두마리")))
-                .andExpect(jsonPath("$.orderDate", equalTo("2022-02-12 12:30:40")))
-                .andExpect(jsonPath("$.orderAmount", equalTo(10000)))
-                .andExpect(jsonPath("$.paymentAmount", equalTo(10000)));
+                .andExpect(jsonPath("$.orderDate", equalTo("2022-02-12 12:30:40")));
     }
 
     @Test
     void placeOrder_passesOrderRequestToService() throws Exception {
         CartItem givenCartItem = new CartItem(1L, 2L, "치킨이 두마리!", 10000);
-        Cart givenCart = new Cart(10000, List.of(givenCartItem));
+        Cart givenCart = new Cart(List.of(givenCartItem));
 
         mockMvc.perform(post("/orders")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsBytes(givenCart)));
 
-        assertThat(spyOrderService.placeOrder_argumentCart.getTotalPrice()).isEqualTo(10000);
         assertThat(spyOrderService.placeOrder_argumentCart.getCartItems()).hasSize(1);
         assertThat(spyOrderService.placeOrder_argumentCart.getCartItems().get(0).getShopId()).isEqualTo(1L);
         assertThat(spyOrderService.placeOrder_argumentCart.getCartItems().get(0).getFoodId()).isEqualTo(2L);

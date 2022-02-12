@@ -4,7 +4,7 @@ import com.zkdlu.order.domain.Order;
 
 public class SpyOrderMapper implements OrderMapper {
     public Cart mapFrom_argumentCart;
-    public Order mapFrom_returnValue = new Order(null, null, null, 0, 0);
+    public Order mapFrom_returnValue = new Order(null, null);
 
     @Override
     public Order mapFrom(Cart cart) {

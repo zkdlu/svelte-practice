@@ -10,8 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @EqualsAndHashCode
@@ -26,9 +29,14 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderState orderState;
 
-    public Order(String orderId, LocalDateTime orderDate) {
+    @OneToMany
+    @JoinColumn(name = "ORDER_ID")
+    private List<OrderItem> orderItems;
+
+    public Order(String orderId, LocalDateTime orderDate, List<OrderItem> orderItems) {
         this.orderId = orderId;
         this.orderDate = orderDate;
+        this.orderItems = orderItems;
         this.orderState = OrderState.NONE;
     }
 

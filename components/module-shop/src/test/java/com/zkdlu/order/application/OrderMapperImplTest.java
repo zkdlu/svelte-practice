@@ -39,5 +39,11 @@ class OrderMapperImplTest {
 
         assertThat(order.getOrderId()).isEqualTo(givenUuid.toString());
         assertThat(order.getOrderDate()).isEqualTo(givenLocalDateTime);
+
+        assertThat(order.getOrderItems()).hasSize(1);
+        assertThat(order.getOrderItems().get(0).getShopId()).isEqualTo(1L);
+        assertThat(order.getOrderItems().get(0).getFoodId()).isEqualTo(2L);
+        assertThat(order.getOrderItems().get(0).getFoodName()).isEqualTo("치킨이 두마리!");
+        assertThat(order.getOrderItems().get(0).getFoodPrice()).isEqualTo(10000);
     }
 }

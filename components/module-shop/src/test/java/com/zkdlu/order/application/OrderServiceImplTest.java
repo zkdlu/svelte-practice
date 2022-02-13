@@ -66,6 +66,6 @@ class OrderServiceImplTest {
     private Order getDefaultOrder(UUID orderId) {
         return new Order(
                 orderId.toString(),
-                LocalDateTime.of(2022, 2, 12, 12, 30, 40));
+                LocalDateTime.of(2022, 2, 12, 12, 30, 40), null);
     }
 }

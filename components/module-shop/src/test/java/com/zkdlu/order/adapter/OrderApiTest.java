@@ -52,7 +52,7 @@ class OrderApiTest {
 
         spyOrderService.placeOrder_returnValue = new Order(
                 givenUuid.toString(),
-                LocalDateTime.of(2022, 2, 12, 12, 30, 40));
+                LocalDateTime.of(2022, 2, 12, 12, 30, 40), null);
 
         mockMvc.perform(post("/orders")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -85,7 +85,7 @@ class OrderApiTest {
 
     @Test
     void getOrder_returnsOrder() throws Exception {
-        spyOrderService.getOrder_returnValue = new Order("givenOrderId", LocalDateTime.of(2022,2,13,12,30,0));
+        spyOrderService.getOrder_returnValue = new Order("givenOrderId", LocalDateTime.of(2022,2,13,12,30,0), null);
         mockMvc.perform(get("/orders/givenOrderId"))
                 .andExpect(jsonPath("$.orderId", equalTo("givenOrderId")))
                 .andExpect(jsonPath("$.orderDate", equalTo("2022-02-13 12:30:00")));

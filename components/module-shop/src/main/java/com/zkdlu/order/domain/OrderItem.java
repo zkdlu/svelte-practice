@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
@@ -20,6 +21,8 @@ public class OrderItem {
     private long foodId;
     private String foodName;
     private int foodPrice;
+    @ManyToOne
+    private Order order;
 
     public OrderItem(long shopId, long foodId, String foodName, int foodPrice) {
         this.shopId = shopId;

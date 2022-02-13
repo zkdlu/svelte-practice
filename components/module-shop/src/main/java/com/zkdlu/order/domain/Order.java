@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
@@ -29,8 +28,7 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderState orderState;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ORDER_ID")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
 
     public Order(String orderId, LocalDateTime orderDate, List<OrderItem> orderItems) {

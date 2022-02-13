@@ -1,4 +1,4 @@
-package com.zkdlu.order.service;
+package com.zkdlu.order.application;
 
 import com.zkdlu.order.domain.Order;
 import com.zkdlu.order.domain.OrderState;
@@ -53,6 +53,14 @@ class OrderServiceImplTest {
         Order actual = orderService.placeOrder(null);
 
         assertThat(actual.getOrderState()).isEqualTo(OrderState.ORDERED);
+    }
+
+    @Test
+    void getOrder_returnsOrder() {
+        var actual = orderService.getOrder("order id");
+
+        assertThat(actual.getOrderId()).isEqualTo("order id");
+        assertThat(actual.getOrderDate()).isEqualTo(LocalDateTime.of(2022, 2, 12, 12, 30, 40));
     }
 
     private Order getDefaultOrder(UUID orderId) {

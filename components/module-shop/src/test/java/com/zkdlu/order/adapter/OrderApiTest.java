@@ -1,10 +1,10 @@
 package com.zkdlu.order.adapter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zkdlu.order.application.Cart;
+import com.zkdlu.order.application.CartItem;
+import com.zkdlu.order.application.SpyOrderService;
 import com.zkdlu.order.domain.Order;
-import com.zkdlu.order.service.Cart;
-import com.zkdlu.order.service.CartItem;
-import com.zkdlu.order.service.SpyOrderService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
@@ -17,6 +17,7 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -74,5 +75,26 @@ class OrderApiTest {
         assertThat(spyOrderService.placeOrder_argumentCart.getCartItems().get(0).getFoodId()).isEqualTo(2L);
         assertThat(spyOrderService.placeOrder_argumentCart.getCartItems().get(0).getFoodName()).isEqualTo("치킨이 두마리!");
         assertThat(spyOrderService.placeOrder_argumentCart.getCartItems().get(0).getFoodPrice()).isEqualTo(10000);
+    }
+
+    @Test
+    void getOder_returnsOkHttpStatus() throws Exception {
+        mockMvc.perform(get("/orders/givenOrderId"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void getOrder_returnsOrder() throws Exception {
+        spyOrderService.getOrder_returnValue = new Order("givenOrderId", LocalDateTime.of(2022,2,13,12,30,0));
+        mockMvc.perform(get("/orders/givenOrderId"))
+                .andExpect(jsonPath("$.orderId", equalTo("givenOrderId")))
+                .andExpect(jsonPath("$.orderDate", equalTo("2022-02-13 12:30:00")));
+    }
+
+    @Test
+    void getOrder_passesOrderIdToService() throws Exception {
+        mockMvc.perform(get("/orders/givenOrderId"));
+
+        assertThat(spyOrderService.getOrder_argumentOrderId).isEqualTo("givenOrderId");
     }
 }

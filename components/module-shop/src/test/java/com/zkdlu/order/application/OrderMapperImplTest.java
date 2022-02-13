@@ -1,4 +1,4 @@
-package com.zkdlu.order.service;
+package com.zkdlu.order.application;
 
 import com.zkdlu.common.StubLocalDateTimeProvider;
 import com.zkdlu.common.StubUuidProvider;

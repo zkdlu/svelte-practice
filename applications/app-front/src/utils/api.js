@@ -12,8 +12,8 @@ const api = {
             },
             body: JSON.stringify(body),
         });
-    
-        return response.json();
+
+        return response;
     }
 };
 

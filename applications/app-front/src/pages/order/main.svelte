@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import { cart } from "../../store";
   import { isEmpty } from "../../utils/arrayUtils";
-  import api from "../../utils/api"
+  import api from "../../utils/api";
   import OrderButton from "../../components/OrderButton.svelte";
 
   const title = "주문 페이지";
@@ -25,9 +25,10 @@
     const cartItems = [...$cart];
 
     try {
-      const json = await api.post("orders", {
-      orderItems: cartItems,
-    });
+      const response = await api.post("orders", {
+        cartItems
+      });
+      const json = await response.json();
 
       cart.update(() => []);
       window.location.href = `#/order/${json.orderId}`;

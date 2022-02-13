@@ -1,12 +1,15 @@
 package com.zkdlu.order.application;
 
 import com.zkdlu.order.domain.Order;
+import com.zkdlu.order.domain.OrderItem;
 import com.zkdlu.order.domain.OrderState;
 import com.zkdlu.order.domain.SpyOrderRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -56,6 +59,17 @@ class OrderServiceImplTest {
     }
 
     @Test
+    void placeOrder_throwsException_whenOrderItemsIsEmpty() {
+        var exception = Assertions.assertThrows(IllegalStateException.class, () -> {
+            spyOrderMapper.mapFrom_returnValue = new Order(
+                    UUID.randomUUID().toString(),
+                    LocalDateTime.of(2022, 2, 12, 12, 30, 40), Collections.emptyList());
+
+            orderService.placeOrder(null);
+        });
+    }
+
+    @Test
     void getOrder_returnsOrder() {
         var actual = orderService.getOrder("order id");
 
@@ -66,6 +80,7 @@ class OrderServiceImplTest {
     private Order getDefaultOrder(UUID orderId) {
         return new Order(
                 orderId.toString(),
-                LocalDateTime.of(2022, 2, 12, 12, 30, 40), null);
+                LocalDateTime.of(2022, 2, 12, 12, 30, 40),
+                List.of(new OrderItem(0, 0, null, 0)));
     }
 }

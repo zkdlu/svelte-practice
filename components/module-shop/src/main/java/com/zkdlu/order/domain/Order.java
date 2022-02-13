@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -30,7 +31,7 @@ public class Order {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "ORDER_ID")
-    private List<OrderItem> orderItems;
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     public Order(String orderId, LocalDateTime orderDate, List<OrderItem> orderItems) {
         this.orderId = orderId;
@@ -40,6 +41,17 @@ public class Order {
     }
 
     public void place() {
+        ordered();
+        validate();
+    }
+
+    private void validate() {
+        if (orderItems.isEmpty()) {
+            throw new IllegalStateException("주문 항목이 빔");
+        }
+    }
+
+    public void ordered() {
         this.orderState = OrderState.ORDERED;
     }
 }

@@ -40,6 +40,8 @@ class OrderApiTest {
 
     @Test
     void placeOrder_returnsCreatedHttpStatus() throws Exception {
+        spyOrderService.placeOrder_returnValue = new Order(null, null, null);
+
         mockMvc.perform(post("/orders")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsBytes(new Cart())))
@@ -63,6 +65,8 @@ class OrderApiTest {
 
     @Test
     void placeOrder_passesOrderRequestToService() throws Exception {
+        spyOrderService.placeOrder_returnValue = new Order(null, null, null);
+
         CartItem givenCartItem = new CartItem(1L, 2L, "치킨이 두마리!", 10000);
         Cart givenCart = new Cart(List.of(givenCartItem));
 
@@ -79,6 +83,8 @@ class OrderApiTest {
 
     @Test
     void getOder_returnsOkHttpStatus() throws Exception {
+        spyOrderService.getOrder_returnValue = new Order(null, null, null);
+
         mockMvc.perform(get("/orders/givenOrderId"))
                 .andExpect(status().isOk());
     }
@@ -93,6 +99,8 @@ class OrderApiTest {
 
     @Test
     void getOrder_passesOrderIdToService() throws Exception {
+        spyOrderService.getOrder_returnValue = new Order(null, null, null);
+
         mockMvc.perform(get("/orders/givenOrderId"));
 
         assertThat(spyOrderService.getOrder_argumentOrderId).isEqualTo("givenOrderId");

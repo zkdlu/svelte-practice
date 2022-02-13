@@ -1,6 +1,5 @@
 package com.zkdlu.order.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -24,7 +23,6 @@ import java.util.List;
 public class Order {
     @Id
     private String orderId;
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime orderDate;
     @Enumerated(EnumType.STRING)
     private OrderState orderState;

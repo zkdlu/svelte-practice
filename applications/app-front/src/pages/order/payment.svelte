@@ -11,6 +11,8 @@
     try {
       const order = await api.get(`orders/${orderId}/payment`);
       console.log(order);
+
+      window.location.href = `#/complete/${orderId}`;
     } catch(err) {
       console.log(err);
       window.location.href = '/';

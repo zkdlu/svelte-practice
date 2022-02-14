@@ -5,9 +5,6 @@ import com.zkdlu.order.domain.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.Collections;
-
 @RequiredArgsConstructor
 @Service
 public class OrderServiceImpl implements OrderService{
@@ -24,8 +21,16 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public Order getOrder(String orderId) {
-        return new Order(
-                orderId,
-                LocalDateTime.of(2022, 2, 12, 12, 30, 40), Collections.emptyList());
+        return orderRepository.findById(orderId)
+                .orElseThrow(IllegalStateException::new);
+    }
+
+    @Override
+    public Order pay(String orderId) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(IllegalStateException::new);
+
+        order.payed();
+        return order;
     }
 }

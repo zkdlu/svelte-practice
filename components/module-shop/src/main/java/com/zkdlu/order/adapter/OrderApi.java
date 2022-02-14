@@ -28,4 +28,9 @@ public class OrderApi {
     public OrderResponse getOrder(@PathVariable String orderId) {
         return OrderResponse.of(orderService.getOrder(orderId));
     }
+
+    @GetMapping("/{orderId}/payment")
+    public OrderResponse pay(@PathVariable String orderId) {
+        return OrderResponse.of(orderService.pay(orderId));
+    }
 }

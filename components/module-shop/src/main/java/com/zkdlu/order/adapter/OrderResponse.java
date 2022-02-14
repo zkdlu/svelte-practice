@@ -11,16 +11,19 @@ class OrderResponse {
     private String orderId;
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime orderDate;
+    private String orderState;
 
-    public OrderResponse(String orderId, LocalDateTime orderDate) {
+    public OrderResponse(String orderId, LocalDateTime orderDate, String orderState) {
         this.orderId = orderId;
         this.orderDate = orderDate;
+        this.orderState = orderState;
     }
 
     static OrderResponse of(Order order) {
         return new OrderResponse(
                 order.getOrderId(),
-                order.getOrderDate()
+                order.getOrderDate(),
+                order.getOrderState().getTag()
         );
     }
 }

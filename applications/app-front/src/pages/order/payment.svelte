@@ -9,13 +9,8 @@
     const orderId = params.id;
 
     try {
-      const order = await api.get(`orders/${orderId}`);
+      const order = await api.get(`orders/${orderId}/payment`);
       console.log(order);
-
-      const payment = await api.post(`payment/${orderId}`);
-      if (payment.status == 200) {
-        console.log('결제 요청');
-      }
     } catch(err) {
       console.log(err);
       window.location.href = '/';

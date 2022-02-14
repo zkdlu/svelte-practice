@@ -10,6 +10,8 @@ import java.util.Optional;
 
 public class SpyOrderRepository implements OrderRepository {
     public Order save_argumentOrder;
+    public String findById_argumentOrderId;
+    public Optional<Order> findById_returnValue = Optional.empty();
 
     @Override
     public Order save(Order order) {
@@ -74,7 +76,8 @@ public class SpyOrderRepository implements OrderRepository {
 
     @Override
     public Optional<Order> findById(String s) {
-        return Optional.empty();
+        findById_argumentOrderId = s;
+        return findById_returnValue;
     }
 
     @Override

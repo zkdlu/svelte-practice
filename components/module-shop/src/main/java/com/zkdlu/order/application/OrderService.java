@@ -6,4 +6,6 @@ public interface OrderService {
     Order placeOrder(Cart cart);
 
     Order getOrder(String orderId);
+
+    Order pay(String orderId);
 }

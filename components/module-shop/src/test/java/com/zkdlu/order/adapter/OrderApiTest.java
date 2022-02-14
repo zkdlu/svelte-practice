@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -104,5 +105,36 @@ class OrderApiTest {
         mockMvc.perform(get("/orders/givenOrderId"));
 
         assertThat(spyOrderService.getOrder_argumentOrderId).isEqualTo("givenOrderId");
+    }
+
+    @Test
+    void pay_returnsOkHttpStatus() throws Exception {
+        spyOrderService.pay_returnValue = new Order(null, null, null);
+        mockMvc.perform(get("/orders/givenOrderId/payment"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void pay_returnsOrderResponse() throws Exception {
+        Order givenOrder = new Order("givenOrderId", LocalDateTime.of(2022, 2, 13, 12, 30, 0), Collections.emptyList());
+        givenOrder.payed();
+        spyOrderService.pay_returnValue = givenOrder;
+
+        mockMvc.perform(get("/orders/givenOrderId/payment"))
+                .andExpect(jsonPath("$.orderId", equalTo("givenOrderId")))
+                .andExpect(jsonPath("$.orderDate", equalTo("2022-02-13 12:30:00")))
+                .andExpect(jsonPath("$.orderState", equalTo("PAYED")))
+        ;
+    }
+
+    @Test
+    void pay_passesOrderIdToService() throws Exception {
+        Order givenOrder = new Order("givenOrderId", LocalDateTime.of(2022, 2, 13, 12, 30, 0), Collections.emptyList());
+        givenOrder.payed();
+        spyOrderService.pay_returnValue = givenOrder;
+
+        mockMvc.perform(get("/orders/givenOrderId/payment"));
+
+        assertThat(spyOrderService.pay_argumentOrderId).isEqualTo("givenOrderId");
     }
 }

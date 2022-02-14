@@ -52,4 +52,8 @@ public class Order {
     public void ordered() {
         this.orderState = OrderState.ORDERED;
     }
+
+    public void payed() {
+        this.orderState = OrderState.PAYED;
+    }
 }

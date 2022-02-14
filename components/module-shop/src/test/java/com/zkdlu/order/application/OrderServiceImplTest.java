@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
-import java.util.UUID;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -40,8 +40,7 @@ class OrderServiceImplTest {
 
     @Test
     void placeOrder_passesOrderToRepository() {
-        UUID givenOrderId = UUID.randomUUID();
-        Order givenOrder = getDefaultOrder(givenOrderId);
+        Order givenOrder = getDefaultOrder("order id");
         spyOrderMapper.mapFrom_returnValue = givenOrder;
 
         orderService.placeOrder(null);
@@ -51,7 +50,7 @@ class OrderServiceImplTest {
 
     @Test
     void placeOrder_returnsOrder_stateOrdered() {
-        spyOrderMapper.mapFrom_returnValue = getDefaultOrder(UUID.randomUUID());
+        spyOrderMapper.mapFrom_returnValue = getDefaultOrder("order id");
 
         Order actual = orderService.placeOrder(null);
 
@@ -62,7 +61,7 @@ class OrderServiceImplTest {
     void placeOrder_throwsException_whenOrderItemsIsEmpty() {
         var exception = Assertions.assertThrows(IllegalStateException.class, () -> {
             spyOrderMapper.mapFrom_returnValue = new Order(
-                    UUID.randomUUID().toString(),
+                    "",
                     LocalDateTime.of(2022, 2, 12, 12, 30, 40), Collections.emptyList());
 
             orderService.placeOrder(null);
@@ -71,15 +70,57 @@ class OrderServiceImplTest {
 
     @Test
     void getOrder_returnsOrder() {
+        spyOrderRepository.findById_returnValue = Optional.of(getDefaultOrder("order id"));
         var actual = orderService.getOrder("order id");
 
         assertThat(actual.getOrderId()).isEqualTo("order id");
         assertThat(actual.getOrderDate()).isEqualTo(LocalDateTime.of(2022, 2, 12, 12, 30, 40));
     }
 
-    private Order getDefaultOrder(UUID orderId) {
+    @Test
+    void getOrder_passesOrderIdToRepository() {
+        spyOrderRepository.findById_returnValue = Optional.of(getDefaultOrder("order id"));
+        
+        orderService.getOrder("order id");
+
+        assertThat(spyOrderRepository.findById_argumentOrderId).isEqualTo("order id");
+    }
+
+    @Test
+    void getOrder_throwsException_whenOrderNotExists() {
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            orderService.getOrder("order id");
+        });
+    }
+
+    @Test
+    void pay_returnsOrder() {
+        spyOrderRepository.findById_returnValue = Optional.of(getDefaultOrder("order id"));
+        var actual = orderService.pay("order id");
+
+        assertThat(actual.getOrderId()).isEqualTo("order id");
+        assertThat(actual.getOrderDate()).isEqualTo(LocalDateTime.of(2022, 2, 12, 12, 30, 40));
+        assertThat(actual.getOrderState()).isEqualTo(OrderState.PAYED);
+    }
+
+    @Test
+    void pay_passesOrderIdToRepository() {
+        spyOrderRepository.findById_returnValue = Optional.of(getDefaultOrder("order id"));
+        orderService.pay("order id");
+
+        assertThat(spyOrderRepository.findById_argumentOrderId).isEqualTo("order id");
+    }
+
+    @Test
+    void pay_throwsException_whenOrderNotExists() {
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            orderService.pay("order id");
+        });
+    }
+
+    private Order getDefaultOrder(String orderId) {
         return new Order(
-                orderId.toString(),
+                orderId,
                 LocalDateTime.of(2022, 2, 12, 12, 30, 40),
                 List.of(new OrderItem(0, 0, null, 0)));
     }

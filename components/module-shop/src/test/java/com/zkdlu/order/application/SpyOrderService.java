@@ -7,6 +7,8 @@ public class SpyOrderService implements OrderService {
     public Order placeOrder_returnValue;
     public String getOrder_argumentOrderId;
     public Order getOrder_returnValue;
+    public String pay_argumentOrderId;
+    public Order pay_returnValue;
 
     @Override
     public Order placeOrder(Cart cart) {
@@ -18,5 +20,11 @@ public class SpyOrderService implements OrderService {
     public Order getOrder(String orderId) {
         getOrder_argumentOrderId = orderId;
         return getOrder_returnValue;
+    }
+
+    @Override
+    public Order pay(String orderId) {
+        pay_argumentOrderId = orderId;
+        return pay_returnValue;
     }
 }
